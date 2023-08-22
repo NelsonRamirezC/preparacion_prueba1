@@ -5,3 +5,7 @@ export const home = (req, res) => {
 export const login = (req, res) => {
     res.render("login");
 };
+
+export const dashboard = (req, res) => {
+    res.render("dashboard");
+};

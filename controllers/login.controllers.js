@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 export const login = (req, res) => {
     try {
         //hardcodeado
@@ -7,8 +9,17 @@ export const login = (req, res) => {
         }
 
         let { username, password } = req.body;
-        console.log(username, password);
-        res.json({ code: 200, message:  "Ruta login"})
+
+        if (admin.username == username && admin.password == password) {
+            let token = jwt.sign({ usuario: username }, "palabrasecretafirmatoken");
+
+
+            return res.json({ code: 200, message:  "Login correcto.", token })
+        } else {
+            return res.status(401).json({ code: 401, message: "Login invalido." });
+        }
+
+        
 
     } catch (error) {
         res.status(500).json({ code: 500, message: "error en proceso de autenticación" });
