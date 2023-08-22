@@ -1,0 +1,30 @@
+{
+  "name": "prueba_td",
+  "version": "1.0.0",
+  "description": "Prueba de certificación talento digital",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "express",
+    "express-handlebars",
+    "cors",
+    "sequelize",
+    "pg",
+    "pg-hstore"
+  ],
+  "author": "Nelson Ramírez",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-handlebars": "^7.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,52 @@
+<h1 class="text-center">VISTA LOGIN</h1>
+
+<section>
+     <!-- Login Form -->
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card shadow">
+          <div class="card-title text-center border-bottom">
+            <h2 class="p-3">Inicia sesión.</h2>
+          </div>
+          <div class="card-body">
+            <form id="formLogin">
+              <div class="mb-4">
+                <label for="username" class="form-label">Username/Email</label>
+                <input type="text" class="form-control" id="username" name="username" />
+              </div>
+              <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password"/>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn text-light main-bg">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+    :root{
+  --main-bg:#401ee9;
+}
+
+.main-bg {
+  background: var(--main-bg) !important;
+}
+
+input:focus, button:focus {
+  border: 1px solid var(--main-bg) !important;
+  box-shadow: none !important;
+}
+
+
+.card, .btn, input{
+  border-radius:0 !important;
+}
+
+</style>
