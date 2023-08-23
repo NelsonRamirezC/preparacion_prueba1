@@ -8,6 +8,7 @@ import viewRoutes from "./routes/views.routes.js";
 
 //IMPORTACIÓ RUTAS DE ENDPOINTS
 import loginRoutes from "./routes/login.routes.js";
+import productsRoutes from "./routes/products.routes.js";
 
 import * as path from "path";
 import { fileURLToPath } from "url";
@@ -44,6 +45,7 @@ app.use("/", viewRoutes);
 
 //ENDPOINTS
 app.use("/api/v1/", loginRoutes);
+app.use("/api/v1/productos", productsRoutes);
 
 //VISTA NOT FOUND
 app.get("*", (req, res) => {

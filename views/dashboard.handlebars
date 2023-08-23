@@ -1,1 +1,114 @@
 <h1 class="text-center">RUTA DASHBOARD PROTEGIDA.</h1>
+
+<section>
+    <form id="formProductos">
+        <div>
+           nombre: <input type="text" name="product_name" id="product_name"> 
+        </div>
+        <div>
+           año : <input type="text" name="model_year" id="model_year"> 
+        </div>
+        <div>
+           Precio min : <input type="number" name="price_min" id="price_min"> 
+        </div>
+        <div>
+           Precio máx: <input type="number" name="price_max" id="price_max"> 
+        </div>
+        <button>Filtrar</button>
+    </form>
+    <div>
+        <p>Cantidad resultados: <span id="cantResult"></span></p>
+    </div>
+</section>
+
+<section>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Año</th>
+            <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+
+        </tbody>
+</table>
+</section>
+
+<script>
+
+    let cuerpoTabla = document.getElementById("cuerpoTabla");
+
+    const cargarTabla = (productos) => {
+        let filas = "";
+        productos.forEach(producto => {
+            filas += `
+                 <tr>
+                    <th scope="row">${producto.product_id}</th>
+                    <td>${producto.product_name}</td>
+                    <td>${producto.model_year}</td>
+                    <td>${producto.list_price}</td>
+                </tr>
+            `
+        })
+
+    cuerpoTabla.innerHTML = filas;
+    document.getElementById("cantResult").innerText = productos.length;
+    }
+
+
+    const getData = async (filtros) => {
+        try{
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${token}`);
+
+
+            let urlBase = "/api/v1/productos?"
+            let response = await fetch(urlBase+filtros, {
+                method: "GET",
+                headers: myHeaders,
+                redirect: 'follow'
+            });
+            let result = await response.json();
+
+            if(result.code == 200){
+                cargarTabla(result.productos)
+            }else{
+                alert(result.message);
+            }
+
+        }catch(error){
+            console.log(error);
+            alert("Ha ocurrido un error al cargar los productos.")
+        }
+    }
+
+    const init = () => {
+        getData();
+    }
+
+    init();
+
+
+    //LÓGICA FORMULARIO FILTRO
+
+    let formProductos = document.getElementById("formProductos");
+
+    formProductos.addEventListener("submit", (event) => {
+        event.preventDefault();
+        try{
+
+            let filtros = `product_name=${product_name.value}&model_year=${model_year.value}&price_min=${price_min.value}&price_max=${price_max.value}`;
+
+            getData(filtros);
+
+        }catch(error){
+            console.log(error);
+            alert("Error al realizar solicitud de productos.")
+        }
+    })
+
+
+</script>

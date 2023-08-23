@@ -13,8 +13,8 @@ export const login = (req, res) => {
         if (admin.username == username && admin.password == password) {
             let token = jwt.sign({ usuario: username }, "palabrasecretafirmatoken");
 
-
-            return res.json({ code: 200, message:  "Login correcto.", token })
+            return res.json({ code: 200, message: "Login correcto.", token })
+            
         } else {
             return res.status(401).json({ code: 401, message: "Login invalido." });
         }
